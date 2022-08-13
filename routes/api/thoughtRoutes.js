@@ -18,3 +18,5 @@ router
   .get(getSingleThought)
   .put(updateThought)
   .delete(deleteThought);
+
+router.route("/id/reactions");
