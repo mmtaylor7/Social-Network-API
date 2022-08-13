@@ -20,3 +20,5 @@ const reactionSchema = new Schema({
     get: () => Date.now,
   },
 });
+
+module.exports = reactionSchema;
