@@ -1,33 +1,26 @@
-const { Schema, model } = require('mongoose');
-const assignmentSchema = require('./Assignment');
+const { Schema, Types } = require("mongoose");
 
-// Schema to create Student model
-const studentSchema = new Schema(
+const reactionSchema = new Schema(
   {
-    first: {
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
+    },
+    reactionBody: {
+      type: String,
+      default: Date.now(),
+      get: () => Date.now,
+    },
+    username: {
       type: String,
       required: true,
-      max_length: 50,
     },
-    last: {
-      type: String,
-      required: true,
-      max_length: 50,
-    },
-    github: {
-      type: String,
-      required: true,
-      max_length: 50,
-    },
-    assignments: [assignmentSchema],
+    reactions: [reactionSchema],
   },
   {
     toJSON: {
-      getters: true,
+      virtuals: true,
     },
+    id: false,
   }
 );
-
-const Student = model('student', studentSchema);
-
-module.exports = Student;
