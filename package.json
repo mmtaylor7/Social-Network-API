@@ -1,10 +1,10 @@
 {
-  "name": "26-Stu_Mongoose-CRUD",
+  "name": "social-network-api",
   "version": "1.0.0",
-  "description": "Reverse engineer developer activity for CRUD methods in Mongoose",
+  "description": "An API for a social network web application where users can share their thoughts, react to friends thoughts, and create a friend list.",
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
+    "test": "test",
     "start": "node index",
     "dev": "nodemon index",
     "seed": "node utils/seed"
@@ -15,5 +15,15 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.9"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmtaylor7/Social-Network-API.git"
+  },
+  "author": "Mary Margaret Taylor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mmtaylor7/Social-Network-API/issues"
+  },
+  "homepage": "https://github.com/mmtaylor7/Social-Network-API#readme"
 }
