@@ -1,6 +1,6 @@
-const { Schema, Types } = require('mongoose');
+const { Schema, Model } = require("mongoose");
 
-const assignmentSchema = new Schema(
+const userSchema = new Schema(
   {
     assignmentId: {
       type: Schema.Types.ObjectId,
@@ -11,7 +11,7 @@ const assignmentSchema = new Schema(
       required: true,
       maxlength: 50,
       minlength: 4,
-      default: 'Unnamed assignment',
+      default: "Unnamed assignment",
     },
     score: {
       type: Number,
