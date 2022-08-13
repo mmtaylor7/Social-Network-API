@@ -8,14 +8,18 @@ const reactionSchema = new Schema(
     },
     reactionBody: {
       type: String,
-      default: Date.now(),
-      get: () => Date.now,
+      required: true,
+      maxLength: 280,
     },
     username: {
       type: String,
       required: true,
     },
-    reactions: [reactionSchema],
+    createdAt: {
+      type: Date,
+      default: Date.now(),
+      get: () => Date.now,
+    },
   },
   {
     toJSON: {
