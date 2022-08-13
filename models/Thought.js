@@ -12,23 +12,13 @@ const thoughtSchema = new Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.now,
-    },
-    startDate: {
-      type: Date,
       default: Date.now(),
     },
-    endDate: {
-      type: Date,
-      // Sets a default value of 12 weeks from now
-      default: () => new Date(+new Date() + 84 * 24 * 60 * 60 * 1000),
+    username: {
+      type: String,
+      required: true,
     },
-    students: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Student",
-      },
-    ],
+    reactions: [reactionSchema],
   },
   {
     toJSON: {
@@ -38,6 +28,10 @@ const thoughtSchema = new Schema(
   }
 );
 
-const Course = model("course", courseSchema);
+const Thought = model("thought", thoughtSchema);
 
-module.exports = Course;
+thoughtSchema.virtual("reactionCount").get(function () {
+  return this.reactions.length;
+});
+
+module.exports = Thought;
