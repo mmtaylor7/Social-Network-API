@@ -83,29 +83,18 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   //create reaction to thought by thought id
-  createReaction(req, res) {
-    Reaction.create(req.body)
-      .then((reaction) => {
-        return Thought.findOneAndUpdate(
-          { _id: req.body.thoughtId }, //
-          { $addToSet: { reactions: reaction._id } },
-          { new: true }
-        );
-      })
-      .then(
-        (
-          user ///
-        ) =>
-          !user
-            ? res.status(404).json({
-                message: "Reaction created, but found no thought with that ID",
-              })
-            : res.json("Created the reaction 🎉")
+  addTag(req, res) {
+    Application.findOneAndUpdate(
+      { _id: req.params.applicationId },
+      { $addToSet: { tags: req.body } },
+      { runValidators: true, new: true }
+    )
+      .then((application) =>
+        !application
+          ? res.status(404).json({ message: "No application with this id!" })
+          : res.json(application)
       )
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
+      .catch((err) => res.status(500).json(err));
   },
   //delete reaction to thought by reaction id
   deleteReaction(req, res) {
