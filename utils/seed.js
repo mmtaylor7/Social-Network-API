@@ -13,13 +13,13 @@ connection.once("open", async () => {
   // Drop existing users
   await User.deleteMany({});
 
-  // Create empty array to hold the students
-  const students = [];
+  // Create empty array to hold the users
+  const users = [];
 
   // Loop 20 times -- add students to the students array
   for (let i = 0; i < 20; i++) {
     // Get some random assignment objects using a helper function that we imported from ./data
-    const assignments = getRandomAssignments(20);
+    const thoughts = getRandomThought(20);
 
     const fullName = getRandomName();
     const first = fullName.split(" ")[0];
