@@ -52,4 +52,10 @@ module.exports = {
       .then(() => res.json({ message: "User and associations are deleted!" }))
       .catch((err) => res.status(500).json(err));
   },
+  addFriend(req, res) {
+
+  }
+  removeFriend(req, res) {
+    
+  }
 };
