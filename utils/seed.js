@@ -1,11 +1,11 @@
-const connection = require('../config/connection');
-const { Course, Student } = require('../models');
-const { getRandomName, getRandomAssignments } = require('./data');
+const connection = require("../config/connection");
+const { User, Thought } = require("../models");
+const { createRandomUser, getRandomThought } = require("./data");
 
-connection.on('error', (err) => err);
+connection.on("error", (err) => err);
 
-connection.once('open', async () => {
-  console.log('connected');
+connection.once("open", async () => {
+  console.log("connected");
 
   // Drop existing courses
   await Course.deleteMany({});
@@ -22,8 +22,8 @@ connection.once('open', async () => {
     const assignments = getRandomAssignments(20);
 
     const fullName = getRandomName();
-    const first = fullName.split(' ')[0];
-    const last = fullName.split(' ')[1];
+    const first = fullName.split(" ")[0];
+    const last = fullName.split(" ")[1];
     const github = `${first}${Math.floor(Math.random() * (99 - 18 + 1) + 18)}`;
 
     students.push({
@@ -39,13 +39,13 @@ connection.once('open', async () => {
 
   // Add courses to the collection and await the results
   await Course.collection.insertOne({
-    courseName: 'UCLA',
+    courseName: "UCLA",
     inPerson: false,
     students: [...students],
   });
 
   // Log out the seed data to indicate what should appear in the database
   console.table(students);
-  console.info('Seeding complete! 🌱');
+  console.info("Seeding complete! 🌱");
   process.exit(0);
 });
