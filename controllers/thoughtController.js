@@ -19,6 +19,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
+  // create thought
   createThought(req, res) {
     Thought.create(req.body)
       .then((thought) => {
@@ -43,6 +44,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
+  //update existing thought
   updateThought(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -59,6 +61,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
+  //delete existing thought
   deleteThought(req, res) {
     Thought.findOneAndRemove({ _id: req.params.thoughtId })
       .then((thought) =>
@@ -79,6 +82,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
+  //create reaction to thought by thought id
   createReaction(req, res) {
     Reaction.create(req.body)
       .then((reaction) => {
@@ -103,6 +107,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
+  //delete reaction to thought by reaction id
   deleteReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
