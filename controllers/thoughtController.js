@@ -19,4 +19,9 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
+  createThought(req, res) {
+    Thought.create(req.body)
+      .then((user) => res.json(user))
+      .catch((err) => res.status(500).json(err));
+  },
 };
