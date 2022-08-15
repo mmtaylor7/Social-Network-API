@@ -40,15 +40,15 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  // Delete a user and associated thoughts
+  // Deletes user and associated thoughts
   deleteUser(req, res) {
     User.findOneAndDelete({ _id: req.params.userId })
       .then((user) =>
         !user
           ? res.status(404).json({ message: "No existing user with this ID" })
-          : Application.deleteMany({ _id: { $in: user.applications } })
+          : User.deleteMany({ _id: { $in: user.thoughts } })
       )
-      .then(() => res.json({ message: "User and associated apps deleted!" }))
+      .then(() => res.json({ message: "User and associations are deleted!" }))
       .catch((err) => res.status(500).json(err));
   },
 };
