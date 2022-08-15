@@ -83,16 +83,18 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   //create reaction to thought by thought id
-  addTag(req, res) {
-    Application.findOneAndUpdate(
-      { _id: req.params.applicationId },
-      { $addToSet: { tags: req.body } },
+  addReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $addToSet: { reactions: req.body } },
       { runValidators: true, new: true }
     )
-      .then((application) =>
-        !application
-          ? res.status(404).json({ message: "No application with this id!" })
-          : res.json(application)
+      .then((thought) =>
+        !thought
+          ? res
+              .status(404)
+              .json({ message: "No thought associated with this id!" })
+          : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
   },
