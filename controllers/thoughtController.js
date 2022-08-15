@@ -24,7 +24,7 @@ module.exports = {
       .then((thought) => {
         return User.findOneAndUpdate(
           { _id: req.body.userId }, //
-          { $addToSet: { applications: thought._id } },
+          { $addToSet: { thoughts: thought._id } },
           { new: true }
         );
       })
@@ -78,5 +78,29 @@ module.exports = {
           : res.json({ message: "Thought successfully deleted!" })
       )
       .catch((err) => res.status(500).json(err));
+  },
+  createReaction(req, res) {
+    Reaction.create(req.body)
+      .then((reaction) => {
+        return Thought.findOneAndUpdate(
+          { _id: req.body.thoughtId }, //
+          { $addToSet: { reactions: reaction._id } },
+          { new: true }
+        );
+      })
+      .then(
+        (
+          user ///
+        ) =>
+          !user
+            ? res.status(404).json({
+                message: "Reaction created, but found no thought with that ID",
+              })
+            : res.json("Created the reaction 🎉")
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
   },
 };
