@@ -25,8 +25,7 @@ module.exports = {
       .then((thought) => {
         return User.findOneAndUpdate(
           { _id: req.body.userId }, //
-          { $addToSet: { thoughts: thought._id } },
-          { new: true }
+          { $push: { thoughts: thought._id } }
         );
       })
       .then(
