@@ -95,7 +95,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  //delete reaction to thought by reaction id
+  //delete reaction to thought by thought id
   deleteReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
