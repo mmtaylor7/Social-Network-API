@@ -29,16 +29,12 @@ module.exports = {
           { new: true }
         );
       })
-      .then(
-        (
-          user ///
-        ) =>
-          !user
-            ? res.status(404).json({
-                message:
-                  "Thought was created, but there is no user with that ID",
-              })
-            : res.json("Created the thought 🎉")
+      .then((user) =>
+        !user
+          ? res.status(404).json({
+              message: "Thought was created, but there is no user with that ID",
+            })
+          : res.json("Created the thought 🎉")
       )
       .catch((err) => {
         console.log(err);
