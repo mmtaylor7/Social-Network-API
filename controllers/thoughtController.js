@@ -14,7 +14,7 @@ module.exports = {
         !thought
           ? res
               .status(404)
-              .json({ message: "No existing thought with this ID" })
+              .json({ message: "No existing thought with this ID!" })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
@@ -76,7 +76,7 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({
-              message: "Thought deleted but no user with this id!",
+              message: " No thought with this id!",
             })
           : res.json({ message: "Thought successfully deleted!" })
       )
@@ -108,7 +108,7 @@ module.exports = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: "No thought with this id!" })
-          : res.json(thought)
+          : res.json("Reaction was deleted!"")
       )
       .catch((err) => res.status(500).json(err));
   },
