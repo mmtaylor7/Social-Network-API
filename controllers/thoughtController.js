@@ -35,7 +35,8 @@ module.exports = {
         ) =>
           !user
             ? res.status(404).json({
-                message: "Thought created, but found no user with that ID",
+                message:
+                  "Thought was created, but there is no user with that ID",
               })
             : res.json("Created the thought 🎉")
       )
